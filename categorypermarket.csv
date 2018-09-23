@@ -1,0 +1,130 @@
+category,marketplace,sum(total_sales)
+RAT,Agora,963.69
+RAT,Alphabay,7245.99
+RAT,Black Market Reloaded,309.89
+RAT,Evolution,756.95
+RAT,Hydra,560.0
+RAT,Pandora,126.77
+RAT,Silk Road 1,6318.12
+app,Agora,89.16
+app,Alphabay,7712.32
+app,Black Market Reloaded,1613.68
+app,Evolution,585.89
+app,Hydra,350.0
+app,Pandora,349.0
+app,Silk Road 1,1998.49
+app,Silk Road 2,407.98
+botnet,Agora,2249.26
+botnet,Alphabay,9288.98
+botnet,Black Market Reloaded,947.82
+botnet,Evolution,30051.54
+botnet,Hydra,280.0
+botnet,Silk Road 1,1952.11
+botnet,Silk Road 2,2143.46
+cash-out,Agora,500212.31
+cash-out,Alphabay,3845848.98000002
+cash-out,Black Market Reloaded,103066.17
+cash-out,Evolution,3089424.49000001
+cash-out,Hydra,50142.32
+cash-out,Pandora,92176.3300000001
+cash-out,Silk Road 1,205063.41
+cash-out,Silk Road 2,133253.49
+e-mail,Agora,610.76
+e-mail,Alphabay,42431.7
+e-mail,Black Market Reloaded,354.71
+e-mail,Evolution,22508.74
+e-mail,Hydra,30655.0
+e-mail,Pandora,58.51
+e-mail,Silk Road 1,1900.81
+exploits,Agora,522.29
+exploits,Alphabay,3979.2
+exploits,Black Market Reloaded,144.84
+exploits,Evolution,8967.95
+exploits,Pandora,33.89
+exploits,Silk Road 1,1127.61
+exploits,Silk Road 2,2883.12
+hosting,Agora,13.83
+hosting,Alphabay,423.56
+hosting,Black Market Reloaded,130.0
+hosting,Evolution,270.73
+hosting,Silk Road 1,344.21
+malware,Agora,321.31
+malware,Alphabay,35905.09
+malware,Black Market Reloaded,1139.56
+malware,Evolution,19599.46
+malware,Hydra,695.0
+malware,Pandora,95.09
+malware,Silk Road 1,730.04
+malware,Silk Road 2,96.63
+other,Agora,403902.83
+other,Alphabay,4000671.48000001
+other,Black Market Reloaded,294845.57
+other,Evolution,766942.68
+other,Hydra,25583.4
+other,Pandora,84728.47
+other,Silk Road 1,1584037.19
+other,Silk Road 2,715620.71
+other - account,Agora,41614.33
+other - account,Alphabay,287154.139999999
+other - account,Black Market Reloaded,5652.03
+other - account,Evolution,90492.74
+other - account,Hydra,7218.0
+other - account,Pandora,3308.79
+other - account,Silk Road 1,21541.31
+other - account,Silk Road 2,157724.02
+other - custom,Agora,447461.89
+other - custom,Alphabay,2859477.8
+other - custom,Black Market Reloaded,120230.65
+other - custom,Evolution,1225654.99
+other - custom,Hydra,17397.0
+other - custom,Pandora,143095.9
+other - custom,Silk Road 1,123600.05
+other - custom,Silk Road 2,954343.319999999
+other - fake,Agora,365443.91
+other - fake,Alphabay,1537568.25
+other - fake,Black Market Reloaded,84784.23
+other - fake,Evolution,318821.88
+other - fake,Hydra,86651.65
+other - fake,Pandora,61565.76
+other - fake,Silk Road 1,152801.15
+other - fake,Silk Road 2,290244.78
+other - guide,Agora,22378.99
+other - guide,Alphabay,295454.74
+other - guide,Black Market Reloaded,18862.54
+other - guide,Evolution,201529.9
+other - guide,Hydra,19025.34
+other - guide,Pandora,4824.88
+other - guide,Silk Road 1,50101.2700000001
+other - guide,Silk Road 2,2018616.27
+other - pirated software,Agora,7501.04
+other - pirated software,Alphabay,55138.01
+other - pirated software,Black Market Reloaded,20151.2
+other - pirated software,Evolution,8489.09
+other - pirated software,Hydra,1720.0
+other - pirated software,Pandora,457.06
+other - pirated software,Silk Road 1,31625.58
+other - pirated software,Silk Road 2,5314.63
+other - voucher/invite/codes/lottery/gift,Agora,19864.86
+other - voucher/invite/codes/lottery/gift,Alphabay,186118.87
+other - voucher/invite/codes/lottery/gift,Black Market Reloaded,30686.47
+other - voucher/invite/codes/lottery/gift,Evolution,314612.77
+other - voucher/invite/codes/lottery/gift,Hydra,251.0
+other - voucher/invite/codes/lottery/gift,Pandora,2512.44
+other - voucher/invite/codes/lottery/gift,Silk Road 1,43163.99
+other - voucher/invite/codes/lottery/gift,Silk Road 2,156781.74
+phone,Agora,800.68
+phone,Alphabay,54586.95
+phone,Black Market Reloaded,640.24
+phone,Evolution,11499.1
+phone,Hydra,1009.9
+phone,Pandora,375.56
+phone,Silk Road 1,1150.86
+phone,Silk Road 2,6651.76
+website,Agora,5040.14
+website,Alphabay,242400.22
+website,Black Market Reloaded,1548.33
+website,Evolution,14927.36
+website,Hydra,692.0
+website,Pandora,597.9
+website,Silk Road 1,11980.2
+website,Silk Road 2,11257.58
