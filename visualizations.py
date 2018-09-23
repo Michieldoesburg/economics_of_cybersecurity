@@ -23,7 +23,7 @@ for i in range(len(num_sales)):
 total_goods_sold = sum(num_sales)
 
 for i in range(len(num_sales)):
-    num_sales[i] = num_sales[i] / total_goods_sold
+    num_sales[i] = num_sales[i] / total_goods_sold * 100
 
 X = labels
 Y = num_sales
