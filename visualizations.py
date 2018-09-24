@@ -118,11 +118,11 @@ for x in X:
 
 _X = np.arange(len(X))
 
-plt.bar(_X - 2.5, Y, 0.2)
-plt.bar(_X - 1.5, Z, 0.2)
-plt.bar(_X - 0.5, H, 0.2)
-plt.bar(_X + 1.5, G, 0.2)
-plt.bar(_X + 2.5, F, 0.2)
+plt.bar(_X - 0.3, Y, 0.1)
+plt.bar(_X - 0.2, Z, 0.1)
+plt.bar(_X - 0.1, H, 0.1)
+plt.bar(_X, G, 0.1)
+plt.bar(_X + 0.1, F, 0.1)
 
 plt.xticks(_X, X) # set labels manually
 
