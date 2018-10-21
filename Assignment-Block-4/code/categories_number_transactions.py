@@ -1,5 +1,5 @@
 import os
-import _csv as csv
+import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from pandas import read_csv
@@ -83,7 +83,7 @@ def get_items_per_vendor(items, vendors):
 	for item_index in range(len(items)):
 		if vendors[item_index] in vendor_items and items[item_index] not in vendor_items[vendors[item_index]]:
 			vendor_items[vendors[item_index]].append(items[item_index])
-		elif vendor_hashes[item_index] not in vendors:
+		elif vendors[item_index] not in vendor_items:
 			vendor_items[vendors[item_index]] = [items[item_index]]
 	return vendor_items
 			
@@ -114,13 +114,11 @@ def create_vendor_category_counter(item_transaction_counter, items_per_vendor, t
 		for vendor in market_vendors:
 			vendors.append(vendor)
 	#Initializing
-	category_counter = []
-	for category in unique_categories:
-		category_counter.append(0)
-
 	vendor_category_counter = dict()
 	for vendor in vendors:
-		vendor_category_counter[vendor] = category_counter 
+		vendor_category_counter[vendor] = []
+		for category in unique_categories:
+			vendor_category_counter[vendor].append(0)
 
 	#Real counting
 	for vendor in vendor_category_counter:
@@ -129,10 +127,10 @@ def create_vendor_category_counter(item_transaction_counter, items_per_vendor, t
 		else:
 			items = items_per_vendor[vendor] #Only items for this year
 			for item in items:
-				counter = item_transaction_counter[item]
-				category = unique_categories.index(category_per_item[item])
-				vendor_category_counter[vendor][category] = vendor_category_counter[vendor][category] + counter
-
+				if item in item_transaction_counter:
+					counter = item_transaction_counter[item]
+					category = unique_categories.index(category_per_item[item])
+					vendor_category_counter[vendor][category] = vendor_category_counter[vendor][category] + counter
 	return vendor_category_counter
 			
 
@@ -237,7 +235,8 @@ def create_overview_transactions_lifespans(vendor_lifespan_in_days, vendor_categ
 	for market_index in range(len(unique_markets)):
 		market_overview = dict()
 		for vendor in top_vendors_per_market[market_index]:
-			market_overview[vendor] = [vendor_lifespan_in_days[vendor]].append(vendor_category_counter[vendor])
+			market_overview[vendor] = [vendor_lifespan_in_days[vendor]] + vendor_category_counter[vendor]
+
 		markets_overview[unique_markets[market_index]] = market_overview
 	return markets_overview
 
@@ -254,6 +253,7 @@ def get_category_per_item(item_hashes, categories):
 unique_markets = get_unique_values(markets)
 unique_vendors = get_unique_values(vendor_hashes)
 unique_categories = get_unique_values(categories)
+
 print("Got unique markets, vendors and categories")
 items_per_vendor = get_items_per_vendor(item_hashes, vendor_hashes)
 print("Got items per vendor")
@@ -292,33 +292,73 @@ for year in years:
 	overview = create_overview_transactions_lifespans(vendor_lifespan_in_days, vendor_category_counter, top_vendors_per_market, unique_markets)
 	print("Got overview")
 
-	for index in range(len(unique_markets)):
-		market_overview = overview[unique_markets[index]]
-		one = []
-		two = []
-		for vendor in market_overview:
-			one.append(market_overview[vendor][0])
-			two.append(market_overview[vendor][1])
-		lm = LinearRegression()
-		lm.fit(np.array(one).reshape(-1,1), np.array(two))
-		print lm.coef_
-
-		exit()
-	
-	for index in range(len(total_lifespan_per_market)):
-		lifespans_per_market[index].append(total_lifespan_per_market[index])
 
 
-plt.xlabel('Years', fontsize=10)
-plt.ylabel('Total lifespan of the top 20% vendors in days', fontsize=10)
-plt.title('Total lifespan of the top 20% vendors in days per market per year')
-plt.plot(years, lifespans_per_market[0], color='blue', label=unique_markets[0])
-plt.plot(years, lifespans_per_market[1], color='green', label=unique_markets[1])
-plt.plot(years, lifespans_per_market[2], color='red', label=unique_markets[2])
-plt.plot(years, lifespans_per_market[3], color='yellow', label=unique_markets[3])
-plt.plot(years, lifespans_per_market[4], color='purple', label=unique_markets[4])
-plt.plot(years, lifespans_per_market[5], color='black', label=unique_markets[5])
-plt.plot(years, lifespans_per_market[6], color='darkgreen', label=unique_markets[6])
-plt.plot(years, lifespans_per_market[7], color='lightblue', label=unique_markets[7])
-plt.legend(loc='best')
-plt.show()
+	for market_index in range(len(unique_markets)):
+		market_overview = overview[unique_markets[market_index]]
+
+		filename = "%s_%d" % (unique_markets[market_index], year)
+		with open(filename, 'w') as csvfile:
+			fieldnames = ["lifespan"]
+			for category_index in range(len(unique_categories)):
+				fieldnames.append(str(unique_categories[category_index]))
+    			writer = csv.writer(csvfile, delimiter=',')
+
+    			writer.writerow(fieldnames)
+
+			for vendor in market_overview:
+				if market_overview[vendor] is None:
+					continue
+    				writer.writerow([market_overview[vendor][0], 
+						market_overview[vendor][1],
+						market_overview[vendor][2], 
+						market_overview[vendor][3], 
+						market_overview[vendor][4], 
+						market_overview[vendor][5], 
+						market_overview[vendor][6], 
+						market_overview[vendor][7], 
+						market_overview[vendor][8], 
+						market_overview[vendor][9], 
+						market_overview[vendor][10], 
+						market_overview[vendor][11], 
+						market_overview[vendor][12], 
+						market_overview[vendor][13], 
+						market_overview[vendor][14], 
+						market_overview[vendor][15], 
+						market_overview[vendor][16],
+						market_overview[vendor][17]])
+			csvfile.flush()
+			csvfile.close()
+	print("written for year %d" % year)
+
+
+	#for index in range(len(unique_markets)):
+	#	market_overview = overview[unique_markets[index]]
+	#	one = []
+	#	two = []
+	#	for vendor in market_overview:
+	#		one.append(market_overview[vendor][0])
+	#		two.append(market_overview[vendor][1])
+	#	lm = LinearRegression()
+	#	lm.fit(np.array(one).reshape(-1,1), np.array(two))
+	#	print lm.coef_
+#
+#		exit()
+#	
+#	for index in range(len(total_lifespan_per_market)):
+#		lifespans_per_market[index].append(total_lifespan_per_market[index])
+
+
+#plt.xlabel('Years', fontsize=10)
+#plt.ylabel('Total lifespan of the top 20% vendors in days', fontsize=10)
+#plt.title('Total lifespan of the top 20% vendors in days per market per year')
+#plt.plot(years, lifespans_per_market[0], color='blue', label=unique_markets[0])
+#plt.plot(years, lifespans_per_market[1], color='green', label=unique_markets[1])
+#plt.plot(years, lifespans_per_market[2], color='red', label=unique_markets[2])
+#plt.plot(years, lifespans_per_market[3], color='yellow', label=unique_markets[3])
+#plt.plot(years, lifespans_per_market[4], color='purple', label=unique_markets[4])
+#plt.plot(years, lifespans_per_market[5], color='black', label=unique_markets[5])
+#plt.plot(years, lifespans_per_market[6], color='darkgreen', label=unique_markets[6])
+#plt.plot(years, lifespans_per_market[7], color='lightblue', label=unique_markets[7])
+#plt.legend(loc='best')
+#plt.show()
