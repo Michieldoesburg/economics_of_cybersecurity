@@ -293,10 +293,9 @@ for year in years:
 	print("Got overview")
 
 
-
 	for market_index in range(len(unique_markets)):
 		market_overview = overview[unique_markets[market_index]]
-
+	
 		filename = "%s_%d.csv" % (unique_markets[market_index], year)
 		with open(filename, 'w') as csvfile:
 			fieldnames = ["lifespan"]

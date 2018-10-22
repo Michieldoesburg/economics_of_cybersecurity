@@ -267,6 +267,7 @@ lifespans_per_market = []
 for index in unique_markets:
 	lifespans_per_market.append([])
 
+
 for year in years:
 	print("Year %d" % year)
 	#Year specific knowledge
@@ -292,21 +293,32 @@ for year in years:
 	overview = create_overview_transactions_lifespans(vendor_lifespan_in_days, vendor_category_counter, top_vendors_per_market, unique_markets)
 	print("Got overview")
 
-
+	pearson_correlations = dict()
 	#Perform statistical analysis (Linear Regression)
 	for index in range(len(unique_markets)):
 		market_overview = overview[unique_markets[index]] #Get the current market
-		one = np.array([])
-		two = np.array([])
-		for vendor in market_overview:
-			one = np.append(one, [market_overview[vendor][0]]) #Get the lifespan
-			two = np.append(two, [market_overview[vendor][1]]) #Get the first category (only this as a test)
+		lifespan = np.array([])
+		category = np.array([])
+		market_pearson_correlations = []
+		for category_index in range(len(unique_categories)):
+			print unique_categories[category_index]
+			for vendor in market_overview:
+				lifespan = np.append(lifespan, [market_overview[vendor][0]]) #Get the lifespan
+				category = np.append(category, [market_overview[vendor][category_index + 1]]) #Get the category
 		
-		if len(one) != 0 and len(two) != 0: #Skip all markets that do not exist in this year
-			lm = LinearRegression()
-			lm.fit(one.reshape(-1, 1), two) #Use a reshape to have the right format
-			print unique_markets[index]
-			print year
-			print lm.coef_
-			print np.corrcoef(one, two)[0, 1]
+			if len(lifespan) != 0 and len(category) != 0: #Skip all markets that do not exist in this year
+				market_pearson_correlations.append(float("{0:.2f}".format(np.corrcoef(lifespan, category)[0, 1])))
+		print "----"
+		exit()
+		pearson_correlations[unique_markets[index]] = market_pearson_correlations
+	
+	for key in pearson_correlations:
+		print key
+		print pearson_correlations[key]
+				#lm = LinearRegression()
+				#lm.fit(lifespan.reshape(-1, 1), category) #Use a reshape to have the right format
+				#print unique_markets[index]
+				#print year
+				#print lm.coef_
+				#print np.corrcoef(one, two)[0, 1]
 		
